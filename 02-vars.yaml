@@ -1,0 +1,8 @@
+- name: Demo on vars
+  hosts: all
+  vars:
+    URL: play.google.loacal.com
+  tasks:
+    - name: Priniting the value of varible
+      ansible.builtin.debug:
+        msg: Calue of the {{ URL }}

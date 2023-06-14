@@ -7,4 +7,11 @@
 
     - name: Priniting Hello from play2
       ansible.builtin.debug:
-        msg: Hello from santhosh. play2       
+        msg: Hello from santhosh. play2 
+
+- name: Play2
+  hosts: prod
+  tasks:
+    - name: Priniting Hello from play1
+      ansible.builtin.debug:
+        msg: Hello from santhosh. play1             

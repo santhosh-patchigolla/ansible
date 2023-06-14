@@ -1,5 +1,18 @@
 - name: Demo on vars
-  hosts: all
+    vars:
+    URL: play.google.global.com     #in that URL is given at the play level it's called global variable its can used across the playbook
+  vars_file:
+    - dev-vars.yaml
+  tasks:
+    - name: Priniting the value of varible
+      ansible.builtin.debug:
+        msg: Value of the {{ URL }}
+
+    - name: Demo for local variable
+      ansible.builtin.debug:
+        msg: Value of the {{ URL }}
+      vars:                              
+        URL: play.google.local.com osts: all
   vars:
     URL: play.google.global.com     #in that URL is given at the play level it's called global variable its can used across the playbook
   vars_file:
@@ -24,6 +37,7 @@
         msg: Value of the {{ CARNAME }}
 
 
-# Local vars has higher than the global
+# # CLI Variables > local variables > file variables  > Global Variables (giving play level)
+# Local vars has higher than the global (giving at taks level)
 # and command line vars has more prefernce that both ...Command line vars are nothing but the passing vars from excuting at the taks level
 # Begining of the line you need to pass the vars with  EX"{{ CARNAME }}"

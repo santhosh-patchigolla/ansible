@@ -1,0 +1,12 @@
+# will show the demo on fats
+
+- name: Demo on  facts
+  hosts: all
+  tasks:
+    - name: Printing the fact
+      ansible.builtin.debug:
+        msg: ansible_distribution is {{ ansible_distribution }}
+        
+    - name: Printing the macAddress of the machine
+      ansible.builtin.debug:
+        msg: macAddress is {{ ansible_default_ipv4.macaddress }}

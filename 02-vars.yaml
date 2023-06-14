@@ -2,6 +2,8 @@
   hosts: all
   vars:
     URL: play.google.global.com     #in that URL is given at the play level it's called global variable its can used across the playbook
+  vars_file:
+    - dev-vars.yaml
   tasks:
     - name: Priniting the value of varible
       ansible.builtin.debug:

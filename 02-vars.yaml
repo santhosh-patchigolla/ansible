@@ -17,6 +17,11 @@
       ansible.builtin.debug:
         msg: Value of the {{ CARNAME }}
 
+    - name: Demo for double from stating line line variable
+      ansible.builtin.debug:
+        msg: "{{ CARNAME }}""
+
 
 # Local vars has higher than the global
 # and command line vars has more prefernce that both ...Command line vars are nothing but the passing vars from excuting at the taks level
+# Begining of the line you need to pass the vars with  EX"{{ CARNAME }}"

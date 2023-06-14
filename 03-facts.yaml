@@ -6,8 +6,7 @@
   tasks:
     - name: Printing the distribution
       ansible.builtin.debug:
-        msg: ansible_distribution is {{ ansible_distribution }}   # this will show the OS and flavour of the node
-        
+        msg: ansible_distribution is {{ ansible_distribution }}   # this will show the OS and flavour of the node        
     - name: Printing the macAddress of the machine
       ansible.builtin.debug:
         msg: macAddress is {{ ansible_default_ipv4.macaddress }} this will show the mac of the nodes

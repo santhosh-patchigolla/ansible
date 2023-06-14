@@ -1,6 +1,7 @@
 - name: This is about demo on conditions
   hosts: all
   tasks:
+  action: true
     - name: run if is debian
       ansible.builtin.debug:
         msg: It's an CentOS
@@ -10,3 +11,8 @@
       ansible.builtin.command: 
         msg: It's an Debian
       when: ansible_distribution == "Debian"    
+
+    - name: Run this action 
+      ansible.builtin.debug: 
+        msg: Run only if it's true
+      when: action   

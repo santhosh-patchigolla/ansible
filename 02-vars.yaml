@@ -15,11 +15,11 @@
 
     - name: Demo for commad line variable
       ansible.builtin.debug:
-        msg: Value of the {{ URL }}
+        msg: "{{ URL }}"
 
-    - name: Demo for double from stating line line variable
+    - name: Taking the value fron the CLI
       ansible.builtin.debug:
-        msg: "{{ CARNAME }}""
+        msg: Value of the {{ CARNAME }}
 
 
 # Local vars has higher than the global

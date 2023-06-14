@@ -4,3 +4,7 @@
     - name: Priniting Hello from play1
       ansible.builtin.debug:
         msg: Hello from santhosh. play1
+
+    - name: Priniting Hello from play2
+      ansible.builtin.debug:
+        msg: Hello from santhosh. play2       

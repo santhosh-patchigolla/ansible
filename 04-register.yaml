@@ -1,0 +1,10 @@
+- name: Demo on register # its about the shell module since shell will excute but it wont show to avoid this we havw create registered the out put
+  hosts: all
+  tasks:
+    - name: Demo on shell
+      ansible.builtin.shell: uptime
+      register: OUT
+
+    - name: Printing output variable
+      ansible.builtin.debug: 
+        msg: {{ OUT }}

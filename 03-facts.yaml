@@ -2,7 +2,6 @@
 
 - name: Demo on  facts
   hosts: all
-  gather_facts: false
   tasks:
     - name: Printing the distribution
       ansible.builtin.debug:

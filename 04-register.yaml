@@ -1,4 +1,4 @@
-- name: Demo on register # its about the shell module since shell will excute but it wont show to avoid this we havw create registered the out put
+- name: Demo on register 
   hosts: all
   tasks:
     - name: Demo on shell

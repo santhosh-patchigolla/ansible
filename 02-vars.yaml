@@ -7,8 +7,16 @@
       ansible.builtin.debug:
         msg: Value of the {{ URL }}
 
-    - name: Demo for loacal variable
+    - name: Demo for local variable
       ansible.builtin.debug:
         msg: Value of the {{ URL }}
-      vars:
+      vars:                              
         URL: play.google.local.com      # this vars (URl)given at the task level so its an local varaible
+
+    - name: Demo for commad line variable
+      ansible.builtin.debug:
+        msg: Value of the {{ CARNAME }}
+
+
+# Local vars has higher than the global
+# and command line vars has more prefernce that both ...Command line vars are nothing but the passing vars from excuting at the taks level

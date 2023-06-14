@@ -6,3 +6,7 @@
     - name: Priniting the value of varible
       ansible.builtin.debug:
         msg: Value of the {{ URL }}
+
+    - name: Priniting the value of varible
+      ansible.builtin.debug:
+        msg: Value of the {{ car }}

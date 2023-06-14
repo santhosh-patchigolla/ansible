@@ -1,0 +1,12 @@
+- name: This is about demo on conditions
+  hosts: all
+  tasks:
+    - name: run if is debian
+      ansible.builtin.debug:
+        msg: It's an CentOS
+      when: ansible_distribution == "CentOS"  
+
+    - name: Shut down Debian flavored systems
+      ansible.builtin.command: 
+        msg: It's an Debian
+      when: ansible_distribution == "Debian"    

@@ -1,0 +1,32 @@
+- name: Demo on using facts
+  hosts: all
+  tasks:
+    - name: This is a frontend task
+      ansible.builtin.debug:
+        msg:  frontend is installed 
+      tags: frontend
+
+    - name: Starting frontend
+      ansible.builtin.debug:
+        msg: frontend is started
+      tags: frontend
+
+    - name: It's an user task
+      ansible.builtin.debug:
+        msg: Installing the user
+      tags: user
+        
+    - name: Started the user
+      ansible.builtin.debug:
+        msg: Starting user 
+      tags: user
+
+    - name: This is a cart task
+      ansible.builtin.debug:
+        msg: Installing cart
+      tags: cart
+        
+    - name: cart is Starting 
+      ansible.builtin.debug:
+        msg: Starting cart
+      tags: cart

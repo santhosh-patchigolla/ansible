@@ -3,8 +3,8 @@
   tasks: 
     - name: using this play we are copying
       ansible.builtin.copy:
-        src: system
-        dest: /home/centos
+        src: systemd.txt
+        dest: /home/centos/systemd.txt
          
 
 

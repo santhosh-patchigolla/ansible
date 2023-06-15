@@ -1,0 +1,10 @@
+- name: demo on template
+  hosts: all
+  tasks: 
+    - name: using this play we are copying
+      ansible.builtin.template:
+        src: env.txt
+        dest: /home/centos/env.txt\
+      
+# In summary, the template module is used when you need to generate files dynamically based on templates using the Jinja2 templating language, while the copy module is used for straightforward file copying without any modifications or templating.
+# Regenerate response      

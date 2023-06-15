@@ -1,0 +1,10 @@
+- name: Installing the nginx
+  ansible.builtin.package:
+    name: nginx
+    state: present 
+
+- name: Starting the nginx 
+  ansible.builtin.systemd:
+    name: nginx 
+    state: started
+    enabled: true

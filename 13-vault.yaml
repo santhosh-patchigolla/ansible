@@ -12,3 +12,6 @@
     - name: Demo on secret
       ansible.builtin.debug: 
           msg: PASSWORD is {{ PASSWORD }}
+
+
+ # this is how we pass the vault password in CLI ; ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 13-vault.yaml --ask-vault-pass         

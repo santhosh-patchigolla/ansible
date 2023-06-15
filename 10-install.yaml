@@ -8,7 +8,7 @@
         state: present        # Present means install ,Absent is uninstall,lates it to update
 
     - name: Install httpd
-      ansible.builtin.debug:
+      ansible.builtin.package:
         name: httpd
         state: present
 

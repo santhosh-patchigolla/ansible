@@ -3,11 +3,9 @@
   tasks:
     - name: demo on loops play1
       ansible.builtin.debug:
-        msg: Value of the a is 100
-    - name: demo on loops play2
-      ansible.builtin.debug:
-        msg: Value of the b 200
+        msg: Value of the {{ item }}  # using this we can print the loops and for that we need to keep Item in the coats
+      loop:
+        - dir1
+        - dir2
+        - dir3
 
-    - name: demo on loops play3
-      ansible.builtin.debug:
-        msg: Value of the c 300

@@ -7,14 +7,4 @@
 
     - name: Priniting Hello from play2
       ansible.builtin.debug:
-        msg: Hello from santhosh. play2 
-- name: Install ntpdate
-  ansible.builtin.package:
-    name: ntpdate
-    state: present
-- name: Play
-  hosts: prod
-  tasks:
-    - name: Priniting Hello from play1
-      ansible.builtin.debug:
-        msg: Hello from santhosh. play1             
+        msg: Hello from santhosh. play1        

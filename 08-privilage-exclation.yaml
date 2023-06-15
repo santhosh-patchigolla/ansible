@@ -1,0 +1,10 @@
+- name: Demo on privilage esclations
+  hosts: all
+  tasks:
+    - name: User ID
+      ansible.builtin.shell: id
+      register: OUT
+
+    - name: User details print
+      ansible.builtin.debug:
+        msg: "{{ OUT.stdout }}"

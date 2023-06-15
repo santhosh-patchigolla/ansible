@@ -1,5 +1,6 @@
 - name: Demo on privilage esclations
   hosts: all
+  become: yes        # using this we run the playbook as sudo
   tasks:
     - name: User ID
       ansible.builtin.shell: id

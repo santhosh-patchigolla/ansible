@@ -9,7 +9,7 @@
 
     - name: install wget
       ansible.builtin.debug:
-        namge: wget
+        name: wget
         state: wget
 
 

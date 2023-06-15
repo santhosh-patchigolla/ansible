@@ -10,6 +10,6 @@
     - name: install wget
       ansible.builtin.debug:
         name: wget
-        state: wget
+        state: present
 
 

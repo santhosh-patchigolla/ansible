@@ -9,7 +9,7 @@
           3935313961663837640a323365396336343665373834366163366532303866353666666632353432
           3336
   tasks: 
-    - name: Demo on secret
+    - name: Demo on secrets
       ansible.builtin.debug: 
           msg: PASSWORD is {{ PASSWORD }}
 

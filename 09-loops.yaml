@@ -1,0 +1,13 @@
+- name: Demo on loops
+  hosts: all
+  tasks:
+    - name: demo on loops play1
+      ansible.builtin.debug:
+        msg: Value of the a is 100
+    - name: demo on loops play2
+      ansible.builtin.debug:
+        msg: Value of the b 200
+
+    - name: demo on loops play3
+      ansible.builtin.debug:
+        msg: Value of the c 300

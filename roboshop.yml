@@ -3,3 +3,8 @@
   become: yes
   roles:
     - "{{ COMPONENT }}"
+
+
+
+#using this we are parametersing the roles and we can run like below command
+#ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 -e COMPONENT=frontend roboshop.yml

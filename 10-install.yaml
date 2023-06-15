@@ -7,9 +7,9 @@
         name: nginx             # it's a package name you want to install
         state: present        # Present means install ,Absent is uninstall,lates it to update
 
-    - name: Install wget
+    - name: Install httpd
       ansible.builtin.debug:
-        name: wget
+        name: httpd
         state: present
 
 

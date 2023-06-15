@@ -9,5 +9,5 @@
 # In summary, the template module is used when you need to generate files dynamically based on templates using the Jinja2 templating language, while the copy module is used for straightforward file copying without any modifications or templating.
 # Regenerate response  
 # using this template moduel we can pass varible from CLI 
-$How to pass from the CLI is ; ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 12-template.yaml -e ENV=qa
+#How to pass from the CLI is ; ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 12-template.yaml -e ENV=qa
 # as per the varable it will change in the destination server.

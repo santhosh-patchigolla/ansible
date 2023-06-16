@@ -8,6 +8,18 @@
     name: mongodb-org
     state: present
 
+- name: Updateing the mongoDB config
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: Starting the MongoDb service
+  ansible.builtin.systemd:
+    name: mongodb-org 
+    state: started
+    enabled: true
+
 
 
 

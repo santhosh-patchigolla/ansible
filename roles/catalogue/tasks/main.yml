@@ -16,13 +16,7 @@
     name: common
     tasks_from: download 
 
-- name: copying the files to roboshop home directory
-  ansible.builtin.copy:
-    src: /tmp/{{ COMPONENT }}-main/
-    dest: /home/{{APPUSER}}/{{COMPONENT}}
-    owner: "{{APPUSER}}"
-    group: "{{APPUSER}}"
-    remote_src: yes
+
 
 # - name: Configuring MongoDB
 #   ansible.builtin.copy:

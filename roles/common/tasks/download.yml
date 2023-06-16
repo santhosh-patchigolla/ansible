@@ -3,3 +3,17 @@
     src: https://github.com/stans-robot-project/{{ COMPONENT }}/archive/main.zip
     dest: /tmp
     remote_src: yes
+
+- name: Performing {{COMPONENT}} celaning 
+  ansible.builtin.file:
+    path: /home/{{APPUSER}}/{{COMPONENT}}
+    state: absent 
+  ignore_errors: yes  
+
+- name: copying the files to roboshop home directory
+  ansible.builtin.copy:
+    src: /tmp/{{ COMPONENT }}-main/
+    dest: /home/{{APPUSER}}/{{COMPONENT}}
+    owner: "{{APPUSER}}"
+    group: "{{APPUSER}}"
+    remote_src: yes

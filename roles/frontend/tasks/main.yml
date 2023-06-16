@@ -3,7 +3,7 @@
     name: nginx
     state: present 
 
-- name: downloading and extractinf the component
+- name: downloading and extracting the component
   ansible.builtin.unarchive:
     src: https://github.com/stans-robot-project/{{ COMPONENT }}/archive/main.zip
     dest: /tmp

@@ -1,3 +1,25 @@
-- name: Printing Hello From mongodb
-  ansible.builtin.debug:
-      msg: Hello from mongodb
+- name: Configuring MongoDB
+  ansible.builtin.copy:
+    src: mongodb.repo
+    dest: /etc/yum.repos.d/mongodb.repo  #we haven't used remote_src:yes bcoz we copying from loacal(ansible)  
+
+- name: Installing mongDB
+  ansible.builtin.package:
+    name: mongodb-org
+    state: present
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

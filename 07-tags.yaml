@@ -33,4 +33,5 @@
 
     # ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 07-tags.yaml -t user
 
+# using this we can call the apecific play in the playbook.
     #above command is to run witht the help of tag Here -t represents to run the play using the tag and her user tage will run the PLAY

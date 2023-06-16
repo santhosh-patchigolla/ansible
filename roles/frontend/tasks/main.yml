@@ -3,8 +3,38 @@
     name: nginx
     state: present 
 
+- name: downloading and extractinf the component
+  ansible.builtin.unarchive:
+    src: https://github.com/stans-robot-project/frontend/archive/main.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: celaning old content
+  ansible.builtin.file:
+    path: /usr/share/nginx/html/
+    state: absent  # absent means delete
+
+- name: copying the frontedn content which is downlod at remote server
+  ansible.builtin.copy:
+    src: /tmp/frontend-main/static/
+    dest: /usr/share/nginx/html/
+    remote_src: yes
+
+
 - name: Starting the nginx 
   ansible.builtin.systemd:
     name: nginx 
     state: started
     enabled: true
+
+
+
+
+
+
+
+# - name: Unarchive a file that is already on the remote machine
+#   ansible.builtin.unarchive:
+#     src: /tmp/foo.zip
+#     dest: /usr/local/bin
+#     remote_src: yes   #remote_src: yes   means you are copying the file from local and unziping it..(This mean you are trying to archies is not in the loca(ansible))

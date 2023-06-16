@@ -6,6 +6,12 @@
     name: nodejs
     state: present
 
+- name: Creating the app user
+  ansible.builtin.user:
+    name: "{{ APPUSER }}"
+    comment:  Application user
+
+
 
 # - name: Configuring MongoDB
 #   ansible.builtin.copy:

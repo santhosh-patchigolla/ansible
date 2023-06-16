@@ -4,11 +4,11 @@
     dest: /tmp
     remote_src: yes
 
-- name: Performing {{COMPONENT}} celaning 
+- name: Performing {{COMPONENT}} celanup
   ansible.builtin.file:
     path: /home/{{APPUSER}}/{{COMPONENT}}
     state: absent 
-    ignore_errors: yes  
+  ignore_errors: yes  
 
 - name: copying the files to roboshop home directory
   ansible.builtin.copy:
@@ -17,4 +17,4 @@
     owner: "{{APPUSER}}"
     group: "{{APPUSER}}"
     remote_src: yes
-    ignore_errors: yes 
+  ignore_errors: yes 

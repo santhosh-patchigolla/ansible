@@ -21,11 +21,19 @@
     remote_src: yes
 
 
+- name: copying the proxy.congif
+  ansible.builtin.copy:
+    src: roboshop.conf
+    dest: /etc/nginx/default.d/roboshop.conf  
+
+
 - name: Starting the nginx 
   ansible.builtin.systemd:
     name: nginx 
-    state: started
+    state: restarted
     enabled: true
+
+
 
 
 

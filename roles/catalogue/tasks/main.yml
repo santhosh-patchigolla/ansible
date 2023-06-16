@@ -20,6 +20,11 @@
   community.general.npm:
     path: /home/{{APPUSER}}/{{COMPONENT}}
 
+- name: Copying the systemd files
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/service/system/{{COMPONENT}}
+
 
 # - name: Configuring MongoDB
 #   ansible.builtin.copy:

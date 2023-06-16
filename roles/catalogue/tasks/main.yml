@@ -11,7 +11,16 @@
     name: "{{ APPUSER }}"
     comment:  Application user
 
+- name: Download and extract {{COMPONENT}}
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download 
 
+- name: copying the files to roboshop home directory
+  ansible.builtin.copy:
+    src: /tmp/{{ COMPONENT }}-main/
+    dest: /home/{{APPUSER}}/{{COMPONENT}}
+    remote_src: yes
 
 # - name: Configuring MongoDB
 #   ansible.builtin.copy:

@@ -16,6 +16,9 @@
     name: common
     tasks_from: download 
 
+- name: Generating Artifacts from NPM
+  community.general.npm:
+    path: /home/{{APPUSER}}/{{COMPONENT}}
 
 
 # - name: Configuring MongoDB

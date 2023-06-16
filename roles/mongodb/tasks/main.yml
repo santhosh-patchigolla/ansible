@@ -28,12 +28,12 @@
 
 - name: Injecting the mongoDB shema
   community.mongodb.mongodb_shell:
-    file: "/tmp/{{ COMPONENT }}-main/catalogue.js"
+    file: "/tmp/{{COMPONENT}}-main/catalogue.js"
     idempotent: yes                       #idempotent means if you apply an idempotent operation or function once or multiple times, the outcome remains the same.
 
-- name: Injecting the mongoDB user shema
+- name: Injecting the mongoDB users shema
   community.mongodb.mongodb_shell:
-    file: "/tmp/{{ COMPONENT }}-main/user.js"
+    file: "/tmp/{{COMPONENT}}-main/users.js"
     idempotent: yes 
 
 

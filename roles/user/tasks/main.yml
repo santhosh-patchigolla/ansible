@@ -23,9 +23,10 @@
 - name: Copying the systemd files
   ansible.builtin.template:
     src: systemd.service
-    dest: /etc/systemd/service/system/{{COMPONENT}}
+    dest: /etc/systemd/service/system/{{COMPONENT}}.servive
 
-- name: ReStarting the catalogue
+
+- name: ReStarting the {{COMPONENT}}
   ansible.builtin.systemd:
     name: catalogue 
     state: restarted

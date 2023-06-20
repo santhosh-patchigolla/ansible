@@ -14,7 +14,7 @@
     state: absent  # absent means delete
 
 - name: copying the frontend content which is downlod at remote server
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: /tmp/{{ COMPONENT }}-main/static/
     dest: /usr/share/nginx/html/
     remote_src: yes

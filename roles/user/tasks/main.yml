@@ -1,0 +1,92 @@
+- name: Configuring the NodesJS
+  ansible.builtin.shell: curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
+
+- name: Installing NodeJS
+  ansible.builtin.package:
+    name: nodejs
+    state: present
+
+- name: Creating the app user
+  ansible.builtin.user:
+    name: "{{ APPUSER }}"
+    comment:  Application user
+
+- name: Download and extract {{COMPONENT}}
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download 
+
+- name: Generating Artifacts from NPM
+  community.general.npm:
+    path: /home/{{APPUSER}}/{{COMPONENT}}
+
+- name: Copying the systemd files
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/service/system/{{COMPONENT}}
+
+- name: ReStarting the catalogue
+  ansible.builtin.systemd:
+    name: catalogue 
+    state: restarted
+    enabled: true
+    daemon_reload: true
+
+- name: Configuring the node name 
+  ansible.builtin.shell: set-hostname {{ COMPONENT }}-{{ENV}}
+
+
+
+# - name: Configuring MongoDB
+#   ansible.builtin.copy:
+#     src: mongodb.repo
+#     dest: /etc/yum.repos.d/mongodb.repo  #we haven't used remote_src:yes bcoz we copying from loacal(ansible)  
+
+# - name: Installing mongDB
+#   ansible.builtin.package:
+#     name: mongodb-org
+#     state: present
+
+# - name: Updateing the mongoDB config
+#   ansible.builtin.replace:
+#     path: /etc/mongod.conf
+#     regexp: '127.0.0.1'
+#     replace: '0.0.0.0'
+
+# - name: Starting MongoDb service
+#   ansible.builtin.systemd:
+#     name: mongod
+#     state: started
+#     enabled: true
+
+# - name: Download and extract mongodb
+#   ansible.builtin.include_role:
+#     name: common
+#     tasks_from: download 
+
+# - name: Injecting the mongoDB shema
+#   community.mongodb.mongodb_shell:
+#     file: "/tmp/{{ COMPONENT }}-main/{{ item }}.js"
+#     idempotent: yes                                     #idempotent means if you apply an idempotent operation or function once or multiple times, the outcome remains the same.
+#   loop:
+#     - catalogue
+#     - users                        
+
+# - name: Injecting the mongoDB users shema
+#   community.mongodb.mongodb_shell:
+#     file: "/tmp/{{ COMPONENT }}-main/users.js"
+#     idempotent: yes 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

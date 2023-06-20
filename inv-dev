@@ -8,10 +8,10 @@ mongodb-dev.roboshop.internal
 catalogue-dev.roboshop.internal
 
 [redis]
-172.31.93.205
+redis-dev.roboshop.internal
 
 [user]
-user-dev.roboshop.internal
+172.31.93.205
 
 [cart]
 cart-dev.roboshop.internal

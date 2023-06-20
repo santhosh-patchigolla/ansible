@@ -14,14 +14,14 @@
     state: absent  # absent means delete
 
 - name: copying the frontend content which is downlod at remote server
-  ansible.builtin.template:
+  ansible.builtin.copy:
     src: /tmp/{{ COMPONENT }}-main/static/
     dest: /usr/share/nginx/html/
     remote_src: yes
 
 
 - name: copying the proxy.congif
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf  
 

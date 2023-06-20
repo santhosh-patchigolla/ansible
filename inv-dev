@@ -5,7 +5,7 @@ frontend-dev.roboshop.internal
 172.31.25.214
 
 [catalogue]
-catalogue-dev.roboshop.internal
+52.87.203.177
 
 [redis]
 redis-dev.roboshop.internal

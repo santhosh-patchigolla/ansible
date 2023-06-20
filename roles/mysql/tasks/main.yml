@@ -10,7 +10,7 @@
 
 - name: Starting {{COMPONENT}} service
   ansible.builtin.systemd:
-    name: mysql-community-server
+    name: mysqld
     state: started
     enabled: true
 

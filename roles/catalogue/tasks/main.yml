@@ -25,6 +25,14 @@
     src: systemd.service
     dest: /etc/systemd/service/system/{{COMPONENT}}
 
+- name: ReStarting the catalogue
+  ansible.builtin.systemd:
+    name: catalogue 
+    state: restarted
+    enabled: true
+    daemon_reload: true
+
+
 
 # - name: Configuring MongoDB
 #   ansible.builtin.copy:

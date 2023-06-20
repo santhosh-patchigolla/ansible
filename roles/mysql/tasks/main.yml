@@ -5,33 +5,31 @@
 
 - name: Installing {{COMPONENT}}
   ansible.builtin.package:
-    name: mongodb-org
+    name: mysql-community-server
     state: present
 
-- name: Updateing the mongoDB config
-  ansible.builtin.replace:
-    path: /etc/mongod.conf
-    regexp: '127.0.0.1'
-    replace: '0.0.0.0'
-
-- name: Starting MongoDb service
+- name: Starting {{COMPONENT}} service
   ansible.builtin.systemd:
-    name: mongod
+    name: mysql-community-server
     state: started
     enabled: true
 
-- name: Download and extract mongodb
-  ansible.builtin.include_role:
-    name: common
-    tasks_from: download 
+- name: Configuring the node name 
+  ansible.builtin.shell: set-hostname {{ COMPONENT }}-{{ENV}}
 
-- name: Injecting the mongoDB shema
-  community.mongodb.mongodb_shell:
-    file: "/tmp/{{COMPONENT}}-main/{{ item }}.js"
-    idempotent: yes                                     #idempotent means if you apply an idempotent operation or function once or multiple times, the outcome remains the same.
-  loop:
-    - catalogue
-    - users                        
+
+# - name: Download and extract {{COMPONENT}}
+#   ansible.builtin.include_role:
+#     name: common
+#     tasks_from: download 
+
+# - name: Injecting the mongoDB shema
+#   community.mongodb.mongodb_shell:
+#     file: "/tmp/{{COMPONENT}}-main/{{ item }}.js"
+#     idempotent: yes                                     #idempotent means if you apply an idempotent operation or function once or multiple times, the outcome remains the same.
+#   loop:
+#     - catalogue
+#     - users                        
 
 # - name: Injecting the mongoDB users shema
 #   community.mongodb.mongodb_shell:

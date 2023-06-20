@@ -31,7 +31,10 @@
     idempotent: yes                                     #idempotent means if you apply an idempotent operation or function once or multiple times, the outcome remains the same.
   loop:
     - catalogue
-    - users                        
+    - users    
+
+- name: Configuring the node name 
+  ansible.builtin.shell: set-hostname {{ COMPONENT }}-{{ENV}}
 
 # - name: Injecting the mongoDB users shema
 #   community.mongodb.mongodb_shell:

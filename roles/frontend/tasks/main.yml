@@ -32,7 +32,8 @@
     state: restarted
     enabled: true
 
-
+- name: Configuring the node name 
+  ansible.builtin.shell: set-hostname {{ COMPONENT }}-{{ENV}}
 
 
 

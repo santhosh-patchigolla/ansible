@@ -2,7 +2,7 @@
 frontend-dev.roboshop.internal
 
 [mongodb]
-mongodb-dev.roboshop.internal
+172.31.25.214
 
 [catalogue]
 catalogue-dev.roboshop.internal

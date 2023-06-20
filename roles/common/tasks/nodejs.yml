@@ -1,7 +1,43 @@
-- name: Configurint the {{COMPONENT}}-{{ ENV }}
+- name: Configuring the NodesJS for {{ COMPONENT }}
+  ansible.builtin.shell: curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
+
+- name: Installing NodeJS for {{ COMPONENT }}- {{ENV}} server
+  ansible.builtin.package:
+    name: nodejs
+    state: present
+
+- name: Creating the app user
+  ansible.builtin.user:
+    name: "{{ APPUSER }}"
+    comment:  Application user
+
+- name: Download and extract {{COMPONENT}}
   ansible.builtin.include_role:
     name: common
-    tasks_from: nodejs
+    tasks_from: download 
+
+- name: Generating Artifacts from NPM
+  community.general.npm:
+    path: /home/{{APPUSER}}/{{COMPONENT}}
+
+- name: Copying the systemd files
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/service/system/{{COMPONENT}}.service
+
+
+- name: Restarting the {{COMPONENT}}
+  ansible.builtin.systemd:
+    name: "{{COMPONENT}}"
+    state: restarted
+    enabled: true
+    daemon_reload: true
+
+- name: Configuring the node name 
+  ansible.builtin.shell: set-hostname {{ COMPONENT }}-{{ENV}}
+
+
+
 
 
 
@@ -44,17 +80,3 @@
 #   community.mongodb.mongodb_shell:
 #     file: "/tmp/{{ COMPONENT }}-main/users.js"
 #     idempotent: yes 
-
-
-
-
-
-
-
-
-
-
-
-
-
-

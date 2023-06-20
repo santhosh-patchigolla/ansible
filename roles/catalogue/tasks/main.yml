@@ -32,6 +32,9 @@
     enabled: true
     daemon_reload: true
 
+- name: Configuring the node name 
+  ansible.builtin.shell: set-hostname {{ COMPONENT }}-{{ENV}}
+
 
 
 # - name: Configuring MongoDB

@@ -25,7 +25,8 @@
     src: systemd.service
     dest: /etc/systemd/service/system/{{COMPONENT}}
 
-- name: ReStarting the catalogue
+
+- name: ReStarting the {{COMPONENT}}
   ansible.builtin.systemd:
     name: "{{COMPONENT}}"
     state: restarted

@@ -141,3 +141,6 @@ By default Ansible will look in each directory within a role for a main.yml file
     templates/main.yml - templates that the role deploys.
 
     meta/main.yml - metadata for the role, including role dependencies and optional Galaxy metadata such as platforms supported.
+
+# The below command is used to create the "redis: component using ansible playboo
+# gp ; ansible-playbook -i inv-dev -e ansible_user=centos -e ansible_password=DevOps321 -e COMPONENT=redis -e ENV=dev roboshop.yml    

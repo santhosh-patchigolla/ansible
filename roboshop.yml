@@ -1,9 +1,8 @@
-- name: This Playbook to configure roboshop project 
-  hosts: "{{ COMPONENT }}"
+- name: Using this playbook creating the roboshop project
   become: yes
-  roles:
-    - "{{ COMPONENT }}"
-
+  hosts: "{{COMPONENT}}" 
+  roles: 
+      - "{{COMPONENT}}"
 
 
 #using this we are parametersing the roles and we can run like below command

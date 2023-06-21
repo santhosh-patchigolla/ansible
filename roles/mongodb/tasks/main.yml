@@ -34,7 +34,7 @@
     - users    
 
 - name: Configuring the node name 
-  ansible.builtin.shell: set-hostname {{ COMPONENT }}-{{ENV}}
+  ansible.builtin.shell: set-hostname {{COMPONENT}}-{{ENV}}
 
 # - name: Injecting the mongoDB users shema
 #   community.mongodb.mongodb_shell:

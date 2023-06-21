@@ -3,3 +3,8 @@
     name: maven
     state: present
 
+- name: Creating the app user
+- name: Installing maven for {{ COMPONENT }}- {{ENV}} server
+  ansible.builtin.package:
+    name: maven
+    state: present

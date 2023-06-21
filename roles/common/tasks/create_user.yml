@@ -1,4 +1,0 @@
-- name: Creating the app user {{ COMPONENT }}-{{ENV}}
-  ansible.builtin.user:
-    name: "{{ APPUSER }}"
-    comment:  Application user

@@ -1,0 +1,5 @@
+- name: Installing maven for {{ COMPONENT }}- {{ENV}} server
+  ansible.builtin.package:
+    name: maven
+    state: present
+

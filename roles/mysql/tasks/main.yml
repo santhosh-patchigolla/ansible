@@ -18,7 +18,7 @@
     enabled: true 
 
 # Rescue and blocks work together ; Tasks in rescue will only be executed if the task in block fails
-- name: Validate the default password 
+- name: Validate default password 
   block: 
     - name: Get MySQL version with non-default credentials
       community.mysql.mysql_info:
@@ -54,11 +54,6 @@
     target: /tmp/{{ COMPONENT }}-main/shipping.sql
     login_user: root
     login_password: RoboShop@1 
-
-
-
-
-
 
 
 

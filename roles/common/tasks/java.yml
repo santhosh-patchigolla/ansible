@@ -16,17 +16,13 @@
 - name: Generarating {{COMPONENT}} artifact
   ansible.builtin.shell: mvn clean package && mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
   args:
-    chdie: /home/{{APPUSER}}/{{COMPONENT}}/
+    chdir: /home/{{APPUSER}}/{{COMPONENT}}/
 
-- name: Copying the systemd files
-  ansible.builtin.template:
-    src: systemd.service
-    dest: /etc/systemd/service/system/{{COMPONENT}}.service
+- name: Configuring the service
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: config_svc 
 
 
-- name: Restarting the {{COMPONENT}}
-  ansible.builtin.systemd:
-    name: "{{COMPONENT}}"
-    state: restarted
-    enabled: true
-    daemon_reload: true
+- name: Configuring the node repo 
+  ansible.builtin.shell: set-hostname {{COMPONENT}}-{{ENV}}

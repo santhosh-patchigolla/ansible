@@ -4,6 +4,6 @@
     comment:  Application user
   register: OUT
 
-- name: Just printing the output 
+- name: printing output 
   ansible.builtin.debug: 
     msg: "{{OUT}}"

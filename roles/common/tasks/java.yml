@@ -14,7 +14,19 @@
     tasks_from: download
 
 - name: Generarating {{COMPONENT}} artifact
-  ansible.builtin.shell: cd  && mvn clean package
+  ansible.builtin.shell: mvn clean package && mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
   args:
     chdie: /home/{{APPUSER}}/{{COMPONENT}}/
 
+- name: Copying the systemd files
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/service/system/{{COMPONENT}}.service
+
+
+- name: Restarting the {{COMPONENT}}
+  ansible.builtin.systemd:
+    name: "{{COMPONENT}}"
+    state: restarted
+    enabled: true
+    daemon_reload: true

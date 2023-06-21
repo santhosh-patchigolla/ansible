@@ -1,20 +1,23 @@
-- name: Configuring {{COMPONENT}}
+- name: Configuring {{COMPONENT}} Repository
   ansible.builtin.copy:
-    src: {{COMPONENT}}.repo
-    dest: /etc/yum.repos.d/{{COMPONENT}}.repo  #we haven't used remote_src:yes bcoz we copying from loacal(ansible)  
+    src: mysql.repo
+    dest: /etc/yum.repos.d/{{COMPONENT}}.repo 
 
-- name: Installing {{COMPONENT}}
-  ansible.builtin.package:
-    name: mysql-community-server
+- name: Installing {{COMPONENT}} 
+  ansible.builtin.yum:
+    name: 
+      - mysql-community-server
+      - python3-PyMySQL
+      - MySQL-python
     state: present
 
-- name: Starting {{COMPONENT}} service
+- name: Starting {{COMPONENT}} 
   ansible.builtin.systemd:
     name: mysqld
     state: started
-    enabled: true
+    enabled: true 
 
-# Rescue is nothing but if the task fails then only the other task should run (or))Rescue and blocks work together ; Tasks in rescue will only be executed if the task in block fails
+# Rescue and blocks work together ; Tasks in rescue will only be executed if the task in block fails
 - name: Validate the default password 
   block: 
     - name: Get MySQL version with non-default credentials
@@ -27,31 +30,39 @@
       ansible.builtin.slurp:
         src: /var/log/mysqld.log
       register: mysql_pwd_log
+      
+    - name: Grep the password and assign it to a variable
+      ansible.builtin.set_fact:
+          DEFAULT_PASSWORD: "{{ mysql_pwd_log['content'] | b64decode | regex_findall('.*temporary password.*')| join(' ') |split(' ') | last }}"
 
-- name: Grep the password and assign it to variable
-  ansible.builtin.set_fact:
-      DEFAULT_PASSWORD: "{{ mysql_pwd_log['content'] | b64decode | regex_findall('.*temporary password.*')| join(' ') |split(' ') | last }}"
+    - name: Reset {{COMPONENT}} Default root password
+      ansible.builtin.shell:  echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ROOT_PASSWORD}}';" | mysql --connect-expired-password -uroot -p"{{DEFAULT_PASSWORD}}"
 
-- name: Reset {{COMPONENT}} Default root password
-  ansible.builtin.shell:  echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ROOT_PASSWORD}}';" | mysql --connect-expired-password -uroot -p"{{DEFAULT_PASSWORD}}"
+    - name: Uninstalling {{COMPONENT}} password validate plugin
+      ansible.builtin.shell: echo "UNINSTALL PLUGIN validate_password;" | mysql -uroot -pRoboShop@1
+      ignore_errors: yes
 
-- name: Configuring the node name 
-  ansible.builtin.shell: set-hostname {{ COMPONENT }}-{{ENV}}
-
-
-- name: Download and extract {{COMPONENT}}
+- name: Download and extract {{COMPONENT}} Schema
   ansible.builtin.include_role:
     name: common
-    tasks_from: download 
+    tasks_from: download
 
 - name: Injecting the {{COMPONENT}} Schema
   community.mysql.mysql_db:
     state: import
     name: all
-    target: /tmp/{{COMPONENT}}-main/shipping.sql
+    target: /tmp/{{ COMPONENT }}-main/shipping.sql
     login_user: root
     login_password: RoboShop@1 
-                    
+
+
+
+
+
+
+
+
+
 
 # - name: Injecting the mongoDB users shema
 #   community.mongodb.mongodb_shell:

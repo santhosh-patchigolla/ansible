@@ -2,7 +2,7 @@
 frontend-dev.roboshop.internal
 
 [mongodb]
-172.31.93.205
+mongodb-dev.roboshop.internal
 
 [catalogue]
 catalogue-dev.roboshop.internal
@@ -11,7 +11,7 @@ catalogue-dev.roboshop.internal
 redis-dev.roboshop.internal
 
 [user]
-172.31.90.101
+user-dev.roboshop.internal
 
 [cart]
 cart-dev.roboshop.internal

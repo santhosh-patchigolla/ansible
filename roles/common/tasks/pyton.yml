@@ -1,0 +1,42 @@
+- name: Installing python {{COMPONENT}}-{{ENV}}
+  ansible.builtin.yum:
+    name:
+      - python36  
+      - gcc
+      - python3-devel
+    state: present
+
+- name: Creating the app User 
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: create_user
+
+- name: Download and extracting {{COMPONENT}}
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download
+
+- name: Updating UID in {{COMPONENT}}.ini file
+  ansible.builtin.lineinfile:
+    path: /etc/selinux/config
+    regexp: '^uid'
+    line: uid = {{OUT.uid}}
+
+- name: Updating  GID in {{COMPONENT}}.ini file
+  ansible.builtin.lineinfile:
+    path: /etc/selinux/config
+    regexp: '^gid'
+    line: uid = {{OUT.group}}
+
+- name: Installing {{COMPONENT}} dependencies
+  ansible.builtin.pip:
+    requirements: /home/{{APPUSER}}/{{COMPONENT}}/requirements.txt
+    executable: pip3
+
+- name: Configuring Service
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: config_svc    
+    
+- name: Configuring Node Name Repo 
+  ansible.builtin.shell: set-hostname {{COMPONENT}}-{{ENV}}

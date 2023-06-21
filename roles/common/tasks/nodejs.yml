@@ -7,9 +7,9 @@
     state: present
 
 - name: Creating the app user
-  ansible.builtin.user:
-    name: "{{ APPUSER }}"
-    comment:  Application user
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: create_user
 
 - name: Download and extract {{COMPONENT}}
   ansible.builtin.include_role:

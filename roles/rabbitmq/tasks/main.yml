@@ -1,0 +1,49 @@
+- name: Installing erlang repo
+  ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash
+
+- name: Configuring {{COMPONENT}}
+  ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
+
+- name: Installing mongDB
+  ansible.builtin.package:
+    name: rabbitmq-server
+    state: present
+
+- name: Starting MongoDb service
+  ansible.builtin.systemd:
+    name: rabbitmq-server
+    state: started
+    enabled: true
+
+- name: Creating {{COMPONENT}} App User
+  community.rabbitmq.rabbitmq_user:
+    user: roboshop
+    password: roboshop123
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+
+
+- name: Configuring the node name 
+  ansible.builtin.shell: set-hostname {{ COMPONENT }}-{{ENV}}
+
+# - name: Injecting the mongoDB users shema
+#   community.mongodb.mongodb_shell:
+#     file: "/tmp/{{ COMPONENT }}-main/users.js"
+#     idempotent: yes 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

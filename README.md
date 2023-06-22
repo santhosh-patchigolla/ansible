@@ -155,6 +155,10 @@ this is used if our infrastructure is dynaimic so that our inventry file is not 
 Ansible pull
 this is used if our infra is static and dont to much changes in the Inventry file (like if our infra is scales up or scales down)
 
+####password for the user is #password for the roboshop in the ansible playbook is 
+RoboSho@1
+
+######
 
 
 

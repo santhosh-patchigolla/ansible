@@ -29,7 +29,7 @@
 - name: Starting the nginx 
   ansible.builtin.systemd:
     name: nginx 
-    state: restarted
+    state: started
     enabled: true
 
 - name: Configuring the node name 

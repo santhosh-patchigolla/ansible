@@ -1,0 +1,14 @@
+- name: ReStarting nginx 
+  ansible.builtin.systemd:
+    name: nginx 
+    state: restarted
+    enabled: true
+
+
+
+# handlers:
+#   - name: Restart memcached
+#     ansible.builtin.service:
+#       name: memcached
+#       state: restarted
+

@@ -153,7 +153,7 @@ Ansible push
 this is used if our infrastructure is dynaimic so that our inventry file is not update that time we can use the ansible push
 
 Ansible pull
-this is used if our infra is static and dont to much changes in the Inventry file 
+this is used if our infra is static and dont to much changes in the Inventry file (like if our infra is scales up or scales down)
 
 
 

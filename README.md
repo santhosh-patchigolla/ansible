@@ -144,3 +144,17 @@ By default Ansible will look in each directory within a role for a main.yml file
 
 # The below command is used to create the "redis: component using ansible playboo
 # gp ; ansible-playbook -i inv-dev -e ansible_user=centos -e ansible_password=DevOps321 -e COMPONENT=redis -e ENV=dev roboshop.yml    
+
+
+Ansible pull and push
+![image](https://github.com/santhosh-patchigolla/ansible/assets/53848645/3d8c5864-9add-4a0e-8e64-b2f7d5ec9c68)
+
+Ansible push 
+this is used if our infrastructure is dynaimic so that our inventry file is not update that time we can use the ansible push
+
+Ansible pull
+this is used if our infra is static and dont to much changes in the Inventry file 
+
+
+
+

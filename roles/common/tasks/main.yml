@@ -1,0 +1,3 @@
+- name: task to show role dependency
+  ansible.builtin.debug:
+      msg: role called common, excuted first.

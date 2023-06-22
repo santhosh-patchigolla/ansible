@@ -24,7 +24,8 @@
   ansible.builtin.template:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf  
-  notify: "ReStarting nginx"              # this is picking from the handalers main.yml which means if there is change in the copy then it restart the nginx
+  notify: "ReStarting nginx"              # this is picking from the handalers main.yml which means if there is change in the copy then it restart the nginx and the name should exactly same as provided in the handlers main.ymk
+  
 
 
 - name: Starting the nginx 

@@ -17,6 +17,8 @@ pipeline {
         stage ('Ansible lint checks') {
             when { branch pattern: "feature-.*", comparator: "REGEXP"}
             steps {
+                sh "env"
+                sh "running the agent against feature branch"
                 sh "echo lint check is done"
             }
         }        
@@ -30,9 +32,11 @@ pipeline {
         }
 
         stage ('Promoting the code prod branch') {
+            when {
+                branch 'main'
+            }
             steps {
                 sh "echo Merging the feature branch to PROD branch"
-                sh "echo Hi santhosh"
             }
         }         
     }

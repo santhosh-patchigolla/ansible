@@ -30,6 +30,9 @@ pipeline {
         }
 
         stage ('Promoting the code prod branch') {
+            when {
+                branch 'main'
+            }            
             steps {
                 sh "echo Merging the feature branch to PROD branch"
             }

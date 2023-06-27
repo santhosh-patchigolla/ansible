@@ -4,7 +4,7 @@ pipeline {
         SSHCRED         = credentials('SSH_CRED')               
     }
     parameters {
-        string(name: 'COMPONENT', defaultValue: 'mongodb', description: 'give the name of the component')
+        string(name: 'COMPONENT', defaultValue: 'mongodb', description: 'Give the name of the component')
     }    
     stages {
 

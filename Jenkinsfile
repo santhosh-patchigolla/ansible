@@ -15,8 +15,10 @@ pipeline {
         }        
 
         stage ('Ansible lint checks') {
+            when { branch pattern: "feature-.*", comparator: "REGEXP"}
             steps {
                 sh "echo lint check is done"
+                
             }
         }        
 

@@ -1,0 +1,62 @@
+# This playbook creates an instance, runs the playbook and then terminates the instance 
+# Ensure you create an AMI from a server that has ANSIBLE Installed 
+- name: Creating EC2 for DryRun
+  hosts: localhost
+  gather_facts: False
+  vars:
+    instance_type: "t3.micro"
+    security_group_id: "sg-0efe0f01b32f1d318"  # Update as per your security group id
+    image: "ami-0edcd33c11a89dfa6"             # Update this with the AMI ID in your account which has ansible installed.
+    region: "us-east-1"
+  tasks:
+    - name: Launching instance
+      amazon.aws.ec2:
+         count: 1
+         group_id: "{{ security_group_id }}"
+         instance_type: "{{ instance_type }}"
+         image: "{{ image }}"
+         wait: true
+         region: "{{ region }}"
+         instance_tags:
+          Name: ansible-dryrun
+      register: ec2
+
+    - name: Adding instance to the host group
+      add_host:
+        hostname: "{{ item.public_ip }}"
+        groupname: launched
+      loop: "{{ ec2.instances }}"
+
+    - name: Waiting for SSH to come up
+      delegate_to: "{{ item.public_ip }}"
+      wait_for_connection:
+        delay: 40
+        timeout: 80
+      loop: "{{ ec2.instances }}"
+
+    - name: Set a Instance_ID Variable
+      set_fact:
+        INSTANCE_ID: "{{ ec2.instance_ids }}"
+
+- name: Run Role to Test
+  hosts: launched
+  become: True
+  gather_facts: Yes
+  tasks:
+    - name: set the facts per host
+      set_fact:
+        INSTANCE_ID: "{{hostvars['localhost']['INSTANCE_ID']}}"
+    - name: Import the role and Terminate the instance
+      block:
+        - name: Import a role
+          import_role:
+            name: "{{COMPONENT}}"
+      always:
+        - name: Terminate instances that were previously launched
+          delegate_to: 127.0.0.1
+          amazon.aws.ec2:
+            state: 'absent'
+            instance_ids: '{{ INSTANCE_ID }}'
+            region: us-east-1
+
+# Ansible is not a right tool for provisioning infrastructure. Terraform is the right way to provision the infrastructure. But just consider it for understanding the test case.

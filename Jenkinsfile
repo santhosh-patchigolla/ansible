@@ -31,7 +31,7 @@ pipeline {
 
         stage ('Promoting the code prod branch') {
             when {
-                branch 'main'
+                branch 'main'                               // Using this when condition we can run the Job in specific branch
             }            
             steps {
                 sh "echo Merging the feature branch to PROD branch"

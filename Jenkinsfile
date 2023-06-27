@@ -32,7 +32,9 @@ pipeline {
         stage ('Promoting the code prod branch') {
             steps {
                 sh "echo Merging the feature branch to PROD branch"
+                sh "echo Hi santhosh"
             }
         }         
     }
 }
+

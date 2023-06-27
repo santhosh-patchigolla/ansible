@@ -22,6 +22,9 @@ pipeline {
         }        
 
         stage ('Ansible Dry Run') {
+            when {
+                branch 'prod'                               // Using this when condition we can run the Job in specific branch
+            }             
             steps {
                 sh ''' 
                     ansible-playbook robot-dryrun.yaml -e COMPONENT=${COMPONENT} -e ansible_user=centos -e ansible_password=${SSHCRED_PSW} -e ENV=dev
@@ -31,11 +34,11 @@ pipeline {
 
         stage ('Promoting the code prod branch') {
             when {
-                branch 'main'                               // Using this when condition we can run the Job in specific branch
+                branch 'prod'                               // Using this when condition we can run the Job in specific branch
             }            
             steps {
                 sh "echo Merging the feature branch to PROD branch"
             }
         }         
     }
-}
+}/////

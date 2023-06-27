@@ -8,6 +8,12 @@ pipeline {
     }        
     stages {
 
+        stage ('Ansible code scan') {
+            steps {
+                sh "echo code scan is done"
+            }
+        }        
+
         stage ('Ansible lint checks') {
             steps {
                 sh "echo lint check is done"
@@ -21,5 +27,11 @@ pipeline {
                 '''       
             }
         }
+
+        stage ('Promoting the code prod branch') {
+            steps {
+                sh "echo Merging the feature branch to PROD branch"
+            }
+        }         
     }
 }

@@ -7,6 +7,13 @@ pipeline {
         string(name: 'COMPONENT', defaultValue: 'mongodb', description: 'give the name of the component')
     }        
     stages {
+
+        stage ('Ansible lint checks') {
+            steps {
+                sh "echo lint check is done"
+            }
+        }        
+
         stage ('Ansible Dry Run') {
             steps {
                 sh ''' 

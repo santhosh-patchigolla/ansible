@@ -5,7 +5,7 @@
 
 - name: Installing redis
   ansible.builtin.package:
-    name: redis-6.2.11
+    name: redis-6.2.13
     state: present
 
 - name: Updating the redis config
